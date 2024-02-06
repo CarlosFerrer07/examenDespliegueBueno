@@ -45,6 +45,11 @@ class Enana
             $this->puntosVida += 10;
             $this->situacion = 'viva';
         }
+
+        if ($this->situacion === 'limbo' && $this->puntosVida === 0) {
+            $this->puntosVida = 0;
+            $this->situacion = 'limbo';
+        }
     }
 
     public function pocimaExtra(){

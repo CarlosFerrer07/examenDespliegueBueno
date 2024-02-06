@@ -47,13 +47,13 @@ class EnanaTest extends TestCase
         // Creamos una enana con puntos de vida insuficientes para sobrevivir a la herida leve
         $enana = new Enana("Enana Viva", 5);
         $enana->heridaLeve(); // Aplicamos herida leve
-    
+
         // Verificamos que la situación cambie a "muerta" después de aplicar la herida leve
         $this->assertEquals("muerta", $enana->getSituacion());
         // Verificamos que los puntos de vida sean 0 después de aplicar la herida leve
         $this->assertEquals(-5, $enana->getPuntosVida());
     }
-    
+
 
     public function testHeridaGrave()
     {
@@ -65,29 +65,33 @@ class EnanaTest extends TestCase
 
         $this->assertEquals("limbo", $enana->getSituacion());
         $this->assertEquals(0, $enana->getPuntosVida());
-
-        
     }
 
     public function testPocimaRevive()
     {
-            #Se probará el efecto de administrar una pócima a una Enana muerta pero con una vida mayor que -10 y menor que 0
-            #Se tendrá que probar que la vida es mayor que 0 y que su situación ha cambiado a viva
-            $enana = new Enana("Enana Muerta", -9);
-            $enana->pocima(); // Aplicamos pocima
-        
-            // Verificamos que la vida sea exactamente 10 después de aplicar la pocima
-            $this->assertEquals(1, $enana->getPuntosVida());
-            // Verificamos que la situación ha cambiado a "viva"
-            $this->assertEquals("viva", $enana->getSituacion());
-    
+        #Se probará el efecto de administrar una pócima a una Enana muerta pero con una vida mayor que -10 y menor que 0
+        #Se tendrá que probar que la vida es mayor que 0 y que su situación ha cambiado a viva
+        $enana = new Enana("Enana Muerta", -9);
+        $enana->pocima(); // Aplicamos pocima
+
+        // Verificamos que la vida sea exactamente 10 después de aplicar la pocima
+        $this->assertEquals(1, $enana->getPuntosVida());
+        // Verificamos que la situación ha cambiado a "viva"
+        $this->assertEquals("viva", $enana->getSituacion());
     }
 
     public function testPocimaNoRevive()
     {
-        #Se probará el efecto de administrar una pócima a una Enana en el libo
+        #Se probará el efecto de administrar una pócima a una Enana en el limbo
         #Se tendrá que probar que la vida y situación no ha cambiado
 
+        $enana = new Enana("Enana Limbo", 0);
+        $enana->pocima(); // Aplicamos pocima
+
+        // Verificamos que la vida sea exactamente 10 después de aplicar la pocima
+        $this->assertEquals(0, $enana->getPuntosVida());
+        // Verificamos que la situación ha cambiado a "viva"
+        $this->assertEquals("limbo", $enana->getSituacion());
     }
 
     public function testPocimaExtraLimbo()
