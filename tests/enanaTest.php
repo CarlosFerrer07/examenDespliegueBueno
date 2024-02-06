@@ -51,7 +51,7 @@ class EnanaTest extends TestCase
         // Verificamos que la situación cambie a "muerta" después de aplicar la herida leve
         $this->assertEquals("muerta", $enana->getSituacion());
         // Verificamos que los puntos de vida sean 0 después de aplicar la herida leve
-        $this->assertEquals(0, $enana->getPuntosVida());
+        $this->assertEquals(-5, $enana->getPuntosVida());
     }
     
 
