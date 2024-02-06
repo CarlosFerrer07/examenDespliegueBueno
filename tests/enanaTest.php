@@ -6,9 +6,25 @@ include './src/Enana.php';
 class EnanaTest extends TestCase {
     
     public function testCreandoEnana() {
-        #Se probará la creación de enanas vivas, muertas y en limbo y se comprobará tanto la vida como el estado
+        // Para enana viva
+        $enanaViva = new Enana("Enana Viva", 1);
+        $this->assertEquals("Enana Viva", $enanaViva->getNombre());
+        $this->assertEquals(1, $enanaViva->getPuntosVida());
+        $this->assertEquals("viva", $enanaViva->getSituacion());
     
+        // Para enana muerta
+        $enanaMuerta = new Enana("Enana Muerta", -1);
+        $this->assertEquals("Enana Muerta", $enanaMuerta->getNombre());
+        $this->assertEquals(-1, $enanaMuerta->getPuntosVida());
+        $this->assertEquals("muerta", $enanaMuerta->getSituacion());
+    
+        // Para enana limbo
+        $enanaLimbo = new Enana("Enana Limbo", 0);
+        $this->assertEquals("Enana Limbo", $enanaLimbo->getNombre());
+        $this->assertEquals(0, $enanaLimbo->getPuntosVida());
+        $this->assertEquals("limbo", $enanaLimbo->getSituacion());
     }
+    
     public function testHeridaLeveVive() {
         #Se probará el efecto de una herida leve a una Enana con puntos de vida suficientes para sobrevivir al ataque
         #Se tendrá que probar que la vida es mayor que 0 y además que su situación es viva
